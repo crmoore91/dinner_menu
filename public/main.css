@@ -1,0 +1,58 @@
+#mapid { height: 180px; }
+
+body {
+  width:1000px;
+  font-family:roboto;
+  font-size:11;
+}
+
+#Calendar {
+  width:70%;
+}
+
+#Week {
+  width:100%;
+}
+
+.day_header {
+  text-align: center;
+  width:200px;
+}
+
+.week_row {
+  width: 100%;
+  height: 200px;
+  border-style: solid;
+  border-color:black;
+  border-width: 2px;
+}
+
+.week_col {
+  height: 150px;
+  border-style: solid;
+  border-color:black;
+  border-width: 1px;
+  width: 13.6%;
+  vertical-align: baseline;
+}
+
+.dayInfoWeather {
+  float:left;
+  width:50px;
+  font-family: roboto;
+  font-size:11px;
+  text-align:left;
+}
+.dayInfoDay {
+  font-family: roboto;
+  font: size 11px;
+  text-align:center;
+  width:50px;
+}
+.dayInfoTemp {
+  font-family: roboto;
+  font-size:11px;
+  width:50px;
+  float:right;
+  text-align:right;
+}

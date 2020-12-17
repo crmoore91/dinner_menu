@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="main.css"/>
+
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+    <script src="crm_calendar.js"></script>
+  </head>
+  <body>
+    <script>
+      async function getLocation() {
+        await navigator.geolocation.getCurrentPosition((position) => {
+          console.log(position);
+          document.getElementById("Latitude").textContent =
+            position.coords.latitude;
+          document.getElementById("Longitude").textContent =
+            position.coords.longitude;
+        });
+      }
+      async function getWeather(lat, lon, cnt) {
+        //api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&cnt={cnt}&appid={API key}
+        let response = await fetch("http://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid=cb7232bd63971544e9bf9b43a5c99a21")
+        console.log(response) 
+      }
+      if ("geolocation" in navigator) {
+        console.log("Geolocation is Available");
+        getLocation();
+        getWeather("38.93", "-77.57", 10);
+      } else {
+        console.log("Geolocation is Not Available");
+      }
+      function createCalendarDay() {
+        const dayTD = document.createElement("td").classList.add("week_col");
+        dayTD.id = "Sunday";
+        const dayTable = document.createElement("table");
+        const dayInfoRow = document.createElement("tr").classList.add("dayInfoRow");
+        const dayInfoWeather = document.createElement("td")
+            .classList.add("dayInfoWeather")
+        const dayInfoDay = document.createElement("td")
+            .classList.add("dayInfoDay")
+        const dayInfoTemp = document.createElement("td")                    
+            .classList.add("dayInfoDay");
+            document.getElementById("cal_body")
+        dayTD.appendChild(dayTable)
+      }
+
+    </script>
+    <h1>Dinner Menu</h1>
+    <div id="Calendar">
+      <table id="Week">
+        <tr id="cal_head">
+          <th class="day_header">Sun</th>
+          <th class="day_header">Mon</th>
+          <th class="day_header">Tue</th>
+          <th class="day_header">Wed</th>
+          <th class="day_header">Thu</th>
+          <th class="day_header">Fri</th>
+          <th class="day_header">Sat</th>
+        </tr>
+      <tr id="cal_body">  
+          <td id="Sunday" class="week_col">
+            <table>
+              <tr>
+                <td class="dayInfoWeather">❄️</td>
+                <td class="dayInfoDay">24</td>
+                <td class="dayInfoTemp">37&deg;</td>
+              </tr>
+            </table>  
+          </td>
+          <td id="Monday" class="week_col">
+            <table>
+              <tr>
+                <td class="dayInfoWeather">❄️</td>
+                <td class="dayInfoDay">24</td>
+                <td class="dayInfoTemp">37&deg;</td>
+              </tr>
+            </table>  
+          </td>
+          <td id="Tuesday" class="week_col">
+            <table>
+              <tr>
+                <td class="dayInfoWeather">❄️</td>
+                <td class="dayInfoDay">24</td>
+                <td class="dayInfoTemp">37&deg;</td>
+              </tr>
+            </table>  
+          </td>
+          <td id="Wednesday" class="week_col">
+            <table>
+              <tr>
+                <td class="dayInfoWeather">❄️</td>
+                <td class="dayInfoDay">24</td>
+                <td class="dayInfoTemp">37&deg;</td>
+              </tr>
+            </table>  
+          </td>
+          <td id="Thursday" class="week_col">
+            <table>
+              <tr>
+                <td class="dayInfoWeather">❄️</td>
+                <td class="dayInfoDay">24</td>
+                <td class="dayInfoTemp">37&deg;</td>
+              </tr>
+            </table>  
+          </td>
+          <td id="Friday" class="week_col">
+            <table>
+              <tr>
+                <td class="dayInfoWeather">❄️</td>
+                <td class="dayInfoDay">24</td>
+                <td class="dayInfoTemp">37&deg;</td>
+              </tr>
+            </table>  
+          </td>
+          <td id="Saturday" class="week_col">
+            <table>
+              <tr>
+                <td class="dayInfoWeather">❄️</td>
+                <td class="dayInfoDay">24</td>
+                <td class="dayInfoTemp">37&deg;</td>
+              </tr>
+            </table>  
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="Location">
+      <div>Latitude: <span id="Latitude"></span>&deg;</div>
+      <div>Longitude: <span id="Longitude"></span>&deg;</div>
+    </div>
+    <div id="MyMap"></div>
+  </body>
+</html>
